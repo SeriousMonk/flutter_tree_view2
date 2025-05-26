@@ -298,7 +298,7 @@ class _LineStyleIcon extends StatelessWidget {
     return CustomPaint(
       painter: _LineStylePainter(
         lineStyle,
-        lineStyle == selectedLineStyle ? color.withOpacity(.3) : color,
+        lineStyle == selectedLineStyle ? color.withValues(alpha: 0.3) : color,
       ),
       child: const SizedBox.square(dimension: 24),
     );

@@ -1,6 +1,6 @@
 /// A collection of widgets and slivers that helps bringing hierarchical data
 /// to life.
-library flutter_fancy_tree_view;
+library;
 
 export 'src/drag_and_drop.dart';
 export 'src/folder_button.dart';
