@@ -6,8 +6,8 @@
 
 ---
 
-# flutter_fancy_tree_view
-[![pub package](https://img.shields.io/pub/v/flutter_fancy_tree_view.svg)](https://pub.dev/packages/flutter_fancy_tree_view)
+# flutter_fancy_tree_view2
+[![pub package](https://img.shields.io/pub/v/flutter_fancy_tree_view2.svg)](https://pub.dev/packages/flutter_fancy_tree_view2)
 
 A [Flutter] collection of widgets and slivers that helps bringing your
 hierarchical data to life.
@@ -34,7 +34,7 @@ to the screen using slivers.
 Run this command:
 
 ```sh
-flutter pub add flutter_fancy_tree_view
+flutter pub add flutter_fancy_tree_view2
 ```
 
 This will add a line like this to your package's pubspec.yaml (and run an 
@@ -42,13 +42,13 @@ implicit `flutter pub get`):
 
 ```yaml
 dependencies:
-  flutter_fancy_tree_view: any
+  flutter_fancy_tree_view2: any
 ```
 
 Now in your Dart code, you can use:
 
 ```dart
-import 'package:flutter_fancy_tree_view/flutter_fancy_tree_view.dart';
+import 'package:flutter_fancy_tree_view2/flutter_fancy_tree_view2.dart';
 ```
 
 </details>
@@ -102,7 +102,7 @@ final List<MyTreeNode> roots = [
 ];
 ```
 
-3. Instantiate a [TreeController](https://pub.dev/documentation/flutter_fancy_tree_view/latest/flutter_fancy_tree_view/TreeController-class.html).
+3. Instantiate a [TreeController](https://pub.dev/documentation/flutter_fancy_tree_view2/latest/flutter_fancy_tree_view2/TreeController-class.html).
 
 ```dart
 final treeController = TreeController<MyTreeNode>(
@@ -117,9 +117,9 @@ final treeController = TreeController<MyTreeNode>(
 > and `checkNodeHasAncestor` depend on `parentProvider` to work and will throw
 > an assertion error in debug mode.
 
-4. Pass the controller to a [TreeView](https://pub.dev/documentation/flutter_fancy_tree_view/latest/flutter_fancy_tree_view/TreeView-class.html)
+4. Pass the controller to a [TreeView](https://pub.dev/documentation/flutter_fancy_tree_view2/latest/flutter_fancy_tree_view2/TreeView-class.html)
 and provide a widget builder to map your data into widgets. Make sure to include
-a way to toggle the tree nodes' expansion state and a [TreeIndentation](https://pub.dev/documentation/flutter_fancy_tree_view/latest/flutter_fancy_tree_view/TreeIndentation-class.html)
+a way to toggle the tree nodes' expansion state and a [TreeIndentation](https://pub.dev/documentation/flutter_fancy_tree_view2/latest/flutter_fancy_tree_view2/TreeIndentation-class.html)
 widget to properly indent them.
 
 ```dart
@@ -271,4 +271,4 @@ Head over to the [pub.dev api docs].
 [example directory]: https://github.com/baumths/flutter_tree_view/tree/main/example
 [example/example.md]: https://github.com/baumths/flutter_tree_view/tree/main/example/example.md
 [example/lib/src/examples]: https://github.com/baumths/flutter_tree_view/tree/main/example/lib/src/examples
-[pub.dev api docs]: https://pub.dev/documentation/flutter_fancy_tree_view/latest/flutter_fancy_tree_view/flutter_fancy_tree_view-library.html
+[pub.dev api docs]: https://pub.dev/documentation/flutter_fancy_tree_view2/latest/flutter_fancy_tree_view2/flutter_fancy_tree_view2-library.html

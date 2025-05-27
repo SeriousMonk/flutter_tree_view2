@@ -3,7 +3,7 @@ to fiddle around with the features of this package.
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter_fancy_tree_view/flutter_fancy_tree_view.dart';
+import 'package:flutter_fancy_tree_view2/flutter_fancy_tree_view2.dart';
 
 void main() => runApp(const MaterialApp(home: Scaffold(body: MyTreeView())));
 

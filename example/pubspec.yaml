@@ -1,5 +1,5 @@
 name: example
-description: Example for the flutter_fancy_tree_view package.
+description: Example for the flutter_fancy_tree_view2 package.
 version: 1.0.0
 publish_to: 'none'
 
@@ -10,7 +10,7 @@ dependencies:
   faker: ^2.2.0
   flutter:
     sdk: flutter
-  flutter_fancy_tree_view:
+  flutter_fancy_tree_view2:
     path: ../
   path_drawing: ^1.0.1
   provider: ^6.1.5

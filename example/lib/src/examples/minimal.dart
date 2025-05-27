@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fancy_tree_view/flutter_fancy_tree_view.dart';
+import 'package:flutter_fancy_tree_view2/flutter_fancy_tree_view2.dart';
 
 import '../shared.dart' show watchAnimationDurationSetting;
 import '../tree_data.dart' show generateTreeNodes;

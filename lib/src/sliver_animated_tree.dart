@@ -86,7 +86,7 @@ class SliverAnimatedTree<T extends Object> extends SliverTree<T> {
     this.maxNodesToShowWhenAnimating = 50,
   }) : assert(maxNodesToShowWhenAnimating > 0);
 
-  /// {@template flutter_fancy_tree_view.SliverAnimatedTree.transitionBuilder}
+  /// {@template flutter_fancy_tree_view2.SliverAnimatedTree.transitionBuilder}
   /// A widget builder used to apply a transition to the expansion state changes
   /// of a node subtree when animations are enabled.
   ///
@@ -96,7 +96,7 @@ class SliverAnimatedTree<T extends Object> extends SliverTree<T> {
   /// {@endtemplate}
   final TreeTransitionBuilder transitionBuilder;
 
-  /// {@template flutter_fancy_tree_view.SliverAnimatedTree.duration}
+  /// {@template flutter_fancy_tree_view2.SliverAnimatedTree.duration}
   /// The default duration to use when animating the expand/collapse operations.
   ///
   /// Provide a [duration] of `Duration.zero` to disable animations.
@@ -105,14 +105,14 @@ class SliverAnimatedTree<T extends Object> extends SliverTree<T> {
   /// {@endtemplate}
   final Duration duration;
 
-  /// {@template flutter_fancy_tree_view.SliverAnimatedTree.curve}
+  /// {@template flutter_fancy_tree_view2.SliverAnimatedTree.curve}
   /// The default curve to use when animating the expand/collapse operations.
   ///
   /// Defaults to `Curves.linear`.
   /// {@endtemplate}
   final Curve curve;
 
-  /// {@template flutter_fancy_tree_view.SliverAnimatedTree.maxNodesToShowWhenAnimating}
+  /// {@template flutter_fancy_tree_view2.SliverAnimatedTree.maxNodesToShowWhenAnimating}
   /// The amount of nodes that are going to be shown on an animating subtree.
   ///
   /// Must be greater than `0`.

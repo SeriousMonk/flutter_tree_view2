@@ -1,4 +1,4 @@
-import 'package:flutter_fancy_tree_view/flutter_fancy_tree_view.dart';
+import 'package:flutter_fancy_tree_view2/flutter_fancy_tree_view2.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Iterable<T> emptyChildrenProvider<T>(T _) => const Iterable.empty();

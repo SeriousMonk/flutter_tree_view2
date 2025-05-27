@@ -57,10 +57,10 @@ class TreeView<T extends Object> extends BoxScrollView {
     super.clipBehavior,
   });
 
-  /// {@macro flutter_fancy_tree_view.SliverTree.controller}
+  /// {@macro flutter_fancy_tree_view2.SliverTree.controller}
   final TreeController<T> treeController;
 
-  /// {@macro flutter_fancy_tree_view.SliverTree.nodeBuilder}
+  /// {@macro flutter_fancy_tree_view2.SliverTree.nodeBuilder}
   final TreeNodeBuilder<T> nodeBuilder;
 
   @override
@@ -126,16 +126,16 @@ class AnimatedTreeView<T extends Object> extends TreeView<T> {
     super.clipBehavior,
   });
 
-  /// {@macro flutter_fancy_tree_view.SliverAnimatedTree.transitionBuilder}
+  /// {@macro flutter_fancy_tree_view2.SliverAnimatedTree.transitionBuilder}
   final TreeTransitionBuilder transitionBuilder;
 
-  /// {@macro flutter_fancy_tree_view.SliverAnimatedTree.duration}
+  /// {@macro flutter_fancy_tree_view2.SliverAnimatedTree.duration}
   final Duration duration;
 
-  /// {@macro flutter_fancy_tree_view.SliverAnimatedTree.curve}
+  /// {@macro flutter_fancy_tree_view2.SliverAnimatedTree.curve}
   final Curve curve;
 
-  /// {@macro flutter_fancy_tree_view.SliverAnimatedTree.maxNodesToShowWhenAnimating}
+  /// {@macro flutter_fancy_tree_view2.SliverAnimatedTree.maxNodesToShowWhenAnimating}
   final int maxNodesToShowWhenAnimating;
 
   @override

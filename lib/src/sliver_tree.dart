@@ -53,7 +53,7 @@ class SliverTree<T extends Object> extends StatefulWidget {
     required this.nodeBuilder,
   });
 
-  /// {@template flutter_fancy_tree_view.SliverTree.controller}
+  /// {@template flutter_fancy_tree_view2.SliverTree.controller}
   /// The object responsible for providing access to tree nodes and their states.
   ///
   /// This widget will listen to the notifications of this controller and
@@ -62,7 +62,7 @@ class SliverTree<T extends Object> extends StatefulWidget {
   /// {@endtemplate}
   final TreeController<T> controller;
 
-  /// {@template flutter_fancy_tree_view.SliverTree.nodeBuilder}
+  /// {@template flutter_fancy_tree_view2.SliverTree.nodeBuilder}
   /// Callback used to map tree nodes into widgets.
   ///
   /// The `TreeEntry<T> entry` parameter contains important information about

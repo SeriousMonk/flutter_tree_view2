@@ -1,4 +1,4 @@
-# flutter_fancy_tree_view example
+# flutter_fancy_tree_view2 example
 
 A new Flutter project.
 

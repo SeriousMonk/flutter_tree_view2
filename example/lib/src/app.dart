@@ -33,7 +33,7 @@ class App extends StatelessWidget {
     );
 
     return MaterialApp(
-      title: 'flutter_fancy_tree_view',
+      title: 'flutter_fancy_tree_view2',
       debugShowCheckedModeBanner: false,
       themeMode: themeMode,
       darkTheme: createTheme(themeColor, Brightness.dark),
