@@ -13,4 +13,4 @@ jobs:
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
           workingDir: example
-          baseHref: /flutter_tree_view/
+          baseHref: /flutter_tree_view2/

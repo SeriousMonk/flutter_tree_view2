@@ -1,8 +1,10 @@
-> [!CAUTION]
-> This package was **discontinued** in favor of Flutter's new [TreeSliver](https://api.flutter.dev/flutter/widgets/TreeSliver-class.html)
-> widget (introduced in Flutter version 3.24.0) and
-> [2D TreeView](https://pub.dev/documentation/two_dimensional_scrollables/latest/two_dimensional_scrollables/TreeView-class.html)
-> from Flutter's official [two_dimensional_scrollables](https://pub.dev/packages/two_dimensional_scrollables) package.
+> [!IMPORTANT]
+> This package is an **unofficial continuation** of the original [`flutter_tree_view`](https://github.com/baumths/flutter_tree_view)
+> by [@baumths](https://github.com/baumths).  
+> Its goal is to **maintain and improve** the original implementation, providing updates, compatibility fixes, and new features —
+> even after Flutter introduced [`TreeSliver`](https://api.flutter.dev/flutter/widgets/TreeSliver-class.html) and
+> the [2D TreeView](https://pub.dev/packages/two_dimensional_scrollables) in version 3.24.0.
+
 
 ---
 
@@ -22,9 +24,9 @@ to the screen using slivers.
 
 |   |   |
 | - | - |
-| Blank Indentation | ![IndentGuide](https://raw.githubusercontent.com/baumths/flutter_tree_view/main/screenshots/blank_indentation.png) |
-| Connecting Lines  | ![IndentGuide.connectingLines](https://raw.githubusercontent.com/baumths/flutter_tree_view/main/screenshots/connecting_lines.png) |
-| Scoping Lines     | ![IndentGuide.scopingLines](https://raw.githubusercontent.com/baumths/flutter_tree_view/main/screenshots/scoping_lines.png) |
+| Blank Indentation | ![IndentGuide](https://raw.githubusercontent.com/Alyssonpp/flutter_tree_view2/main/screenshots/blank_indentation.png) |
+| Connecting Lines  | ![IndentGuide.connectingLines](https://raw.githubusercontent.com/Alyssonpp/flutter_tree_view2/main/screenshots/connecting_lines.png) |
+| Scoping Lines     | ![IndentGuide.scopingLines](https://raw.githubusercontent.com/Alyssonpp/flutter_tree_view2/main/screenshots/scoping_lines.png) |
 
 </details>
 
@@ -268,7 +270,7 @@ Head over to the [pub.dev api docs].
 
 [Flutter]: https://flutter.dev
 [live demo app]: https://baumths.github.io/flutter_tree_view
-[example directory]: https://github.com/baumths/flutter_tree_view/tree/main/example
-[example/example.md]: https://github.com/baumths/flutter_tree_view/tree/main/example/example.md
-[example/lib/src/examples]: https://github.com/baumths/flutter_tree_view/tree/main/example/lib/src/examples
+[example directory]: https://github.com/Alyssonpp/flutter_tree_view2/tree/main/example
+[example/example.md]: https://github.com/Alyssonpp/flutter_tree_view2/tree/main/example/example.md
+[example/lib/src/examples]: https://github.com/Alyssonpp/flutter_tree_view2/tree/main/example/lib/src/examples
 [pub.dev api docs]: https://pub.dev/documentation/flutter_fancy_tree_view2/latest/flutter_fancy_tree_view2/flutter_fancy_tree_view2-library.html
