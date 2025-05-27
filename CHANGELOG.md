@@ -1,7 +1,5 @@
 ## [1.6.1] 26-05-2025
-- Added a way to set the default expansion state of tree nodes through
-  the `defaultExpansionState` property of `TreeController`.
-- Made `TreeController.toggledNodes` public for state restoration/persistence.
+- dependencies updated flutter. 
 
 ## [1.6.0] 24-04-2024
 - Added a way to set the default expansion state of tree nodes through
