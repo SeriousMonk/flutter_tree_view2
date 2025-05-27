@@ -21,7 +21,7 @@ class SettingsState {
   factory SettingsState.fromPreferences(SharedPreferences prefs) {
     return const SettingsState().copyWith(
       animateExpansions: prefs.getBool(animateExpansionsKey),
-      color: Color(prefs.getInt(colorKey) ?? Colors.blue.value),
+      color: Color(prefs.getInt(colorKey) ?? Colors.blue.toARGB32()),
       connectBranches: prefs.getBool(connectBranchesKey),
       indent: prefs.getDouble(indentKey),
       indentGuideType: enumByName(
@@ -105,7 +105,7 @@ class SettingsController with ChangeNotifier {
   void updateColor(Color value) {
     if (state.color == value) return;
     state = state.copyWith(color: value);
-    prefs.setInt(colorKey, value.value);
+    prefs.setInt(colorKey, value.toARGB32());
   }
 
   void updateConnectBranches(bool value) {
