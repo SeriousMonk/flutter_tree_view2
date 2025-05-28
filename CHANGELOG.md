@@ -1,3 +1,6 @@
+## [1.6.2] 227-05-2025
+- Readme updated. 
+
 ## [1.6.1] 26-05-2025
 - dependencies updated flutter. 
 

@@ -269,7 +269,7 @@ Widget build(BuildContext context) {
 Head over to the [pub.dev api docs].
 
 [Flutter]: https://flutter.dev
-[live demo app]: https://baumths.github.io/flutter_tree_view
+[live demo app]: https://Alyssonpp.github.io/flutter_tree_view2
 [example directory]: https://github.com/Alyssonpp/flutter_tree_view2/tree/main/example
 [example/example.md]: https://github.com/Alyssonpp/flutter_tree_view2/tree/main/example/example.md
 [example/lib/src/examples]: https://github.com/Alyssonpp/flutter_tree_view2/tree/main/example/lib/src/examples
