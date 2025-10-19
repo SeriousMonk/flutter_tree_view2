@@ -869,14 +869,23 @@ class TreeDragHandle extends StatelessWidget {
   const TreeDragHandle({
     super.key,
     required this.child,
+    this.cursor = SystemMouseCursors.grab,
   });
 
   /// The widget that should function as a handle for dragging.
   final Widget child;
 
+  /// The cursor that should be use when the user hovers over the handle.
+  /// Defaults to [SystemMouseCursors.grab].
+  final MouseCursor cursor;
   @override
   Widget build(BuildContext context) {
-    return DraggableSource(child: child);
+    return DraggableSource(
+      child: MouseRegion(
+          cursor: cursor,
+          child: child
+      )
+    );
   }
 }
 
