@@ -449,12 +449,16 @@ class _DraggableState<T extends Object> extends State<Draggable<T>> {
   @override
   void dispose() {
     _disposeRecognizerIfInactive();
+    _disposeExtraRecognizersIfInactive();
     super.dispose();
   }
 
   @override
   void didChangeDependencies() {
-    _recognizer!.gestureSettings = MediaQuery.maybeGestureSettingsOf(context);
+    final gestureSettings = MediaQuery.maybeGestureSettingsOf(context);
+    if (_recognizer != null) {
+      _recognizer!.gestureSettings = gestureSettings;
+    }
     super.didChangeDependencies();
   }
 
@@ -470,20 +474,67 @@ class _DraggableState<T extends Object> extends State<Draggable<T>> {
   GestureRecognizer? _recognizer;
   int _activeCount = 0;
 
+  // Extra (temporary) recognizers created to start immediate drags from handles.
+  final List<GestureRecognizer> _extraRecognizers = <GestureRecognizer>[];
+
   void _disposeRecognizerIfInactive() {
-    if (_activeCount > 0) {
-      return;
-    }
-    _recognizer!.dispose();
+    if (_activeCount > 0) return;
+    _recognizer?.dispose();
     _recognizer = null;
   }
 
+  void _disposeExtraRecognizersIfInactive() {
+    if (_activeCount > 0) return;
+    for (final r in _extraRecognizers) {
+      r.dispose();
+    }
+    _extraRecognizers.clear();
+  }
+
+
+  /// Internal: route a pointer to the default recognizer (keeps previous behavior).
   void _routePointer(PointerDownEvent event) {
     if (widget.maxSimultaneousDrags != null && _activeCount >= widget.maxSimultaneousDrags!) {
       return;
     }
+
+    // Guarantee we have a recognizer; recreate if needed.
+    _recognizer ??= widget.createRecognizer(_startDrag)
+        ..gestureSettings = MediaQuery.maybeGestureSettingsOf(context);
     _recognizer!.addPointer(event);
   }
+
+
+  /// Public API for descendants (drag handles): route a pointer to start a drag.
+  /// If the Draggable was created as a LongPressDraggable (i.e. its recognizer is
+  /// a DelayedMultiDragGestureRecognizer), this method will create an immediate
+  /// recognizer for the single pointer so the drag starts right away.
+  ///
+  /// If the Draggable already uses an immediate recognizer (regular Draggable),
+  /// it will just forward to that recognizer.
+  void routePointer(PointerDownEvent event) {
+    if (widget.maxSimultaneousDrags != null && _activeCount >= widget.maxSimultaneousDrags!) {
+      return;
+    }
+
+    if (_recognizer is DelayedMultiDragGestureRecognizer) {
+      // create one-off immediate recognizer for this pointer
+      final ImmediateMultiDragGestureRecognizer immediateRecognizer =
+      ImmediateMultiDragGestureRecognizer(allowedButtonsFilter: widget.allowedButtonsFilter)
+        ..onStart = _startDrag;
+      // copy gesture settings from existing if present
+      final gestureSettings = _recognizer?.gestureSettings ?? MediaQuery.maybeGestureSettingsOf(context);
+      immediateRecognizer.gestureSettings = gestureSettings;
+      _extraRecognizers.add(immediateRecognizer);
+      immediateRecognizer.addPointer(event);
+    } else {
+      // If main recognizer is missing, create it (non-long-press case)
+      _recognizer ??= widget.createRecognizer(_startDrag)
+          ..gestureSettings = MediaQuery.maybeGestureSettingsOf(context);
+      _recognizer!.addPointer(event);
+    }
+  }
+
 
   _DragAvatar<T>? _startDrag(Offset position) {
     if (widget.maxSimultaneousDrags != null && _activeCount >= widget.maxSimultaneousDrags!) {
@@ -511,23 +562,40 @@ class _DraggableState<T extends Object> extends State<Draggable<T>> {
         }
       },
       onDragEnd: (Velocity velocity, Offset offset, bool wasAccepted) {
+        // decrement active count and run cleanup deterministically
         if (mounted) {
           setState(() {
             _activeCount -= 1;
           });
+          // If no active drags remain, we can (re)create the main recognizer
+          // so future pointer downs are handled.
+          if (_activeCount == 0) {
+            // Dispose any temporary recognizers (they're only for starting)
+            _disposeExtraRecognizersIfInactive();
+            // If we've disposed the main recognizer previously, re-create it
+            if (_recognizer == null) {
+              _recognizer = widget.createRecognizer(_startDrag);
+              // keep gesture settings up to date
+              _recognizer!.gestureSettings = MediaQuery.maybeGestureSettingsOf(context);
+            }
+          }
         } else {
+          // Not mounted: still decrement and cleanup
           _activeCount -= 1;
+          _disposeExtraRecognizersIfInactive();
           _disposeRecognizerIfInactive();
         }
+
+        // Call callbacks (only if still mounted as required by API)
         if (mounted && widget.onDragEnd != null) {
           widget.onDragEnd!(
             DraggableDetails(wasAccepted: wasAccepted, velocity: velocity, offset: offset),
           );
         }
-        if (wasAccepted && widget.onDragCompleted != null) {
+        if (wasAccepted && mounted && widget.onDragCompleted != null) {
           widget.onDragCompleted!();
         }
-        if (!wasAccepted && widget.onDraggableCanceled != null) {
+        if (!wasAccepted && mounted && widget.onDraggableCanceled != null) {
           widget.onDraggableCanceled!(velocity, offset);
         }
       },
@@ -991,5 +1059,45 @@ class _DragAvatar<T extends Object> extends Drag {
       Axis.vertical => Offset(0.0, offset.dy),
       null => offset,
     };
+  }
+}
+
+/// Wraps the child widget to make it instantaneously start a drag of
+/// the [Draggable] or [LongPressDraggable] parent it is in. It behaves
+/// like a [Draggable].
+class DraggableSource extends StatefulWidget {
+  ///Creates a [DraggableSource].
+  const DraggableSource({
+    super.key,
+    required this.child,
+  });
+
+  /// The widget that should act as a drag handle.
+  final Widget child;
+
+  @override
+  State<StatefulWidget> createState() => _State();
+}
+
+class _State extends State<DraggableSource> {
+  _DraggableState? draggableState;
+
+  @override
+  void initState() {
+    super.initState();
+    draggableState = context.findAncestorStateOfType<_DraggableState>();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final draggableState = this.draggableState;
+    if (draggableState == null) return widget.child;
+    final bool canDrag =
+        draggableState.widget.maxSimultaneousDrags == null || draggableState._activeCount < draggableState.widget.maxSimultaneousDrags!;
+    return Listener(
+      behavior: draggableState.widget.hitTestBehavior,
+      onPointerDown: canDrag ? draggableState.routePointer : null,
+      child: widget.child,
+    );
   }
 }

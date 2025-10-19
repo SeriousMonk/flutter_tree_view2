@@ -861,3 +861,22 @@ class _TreeDragTargetState<T extends Object> extends State<TreeDragTarget<T>> {
     );
   }
 }
+
+/// Wraps the provided [child] to make it a drag handle that triggers the
+/// drag immediately, the same way a regular [Draggable] would
+class TreeDragHandle extends StatelessWidget {
+  /// Creates a [TreeDragHandle].
+  const TreeDragHandle({
+    super.key,
+    required this.child,
+  });
+
+  /// The widget that should function as a handle for dragging.
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return DraggableSource(child: child);
+  }
+}
+
